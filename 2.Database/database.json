@@ -1,0 +1,56 @@
+{
+  "databaseType": "MongoDB",
+
+  "CustomerSchema": {
+    "_id": "ObjectId",
+    "email": "string",
+    "password": "string",
+    "token": "string",
+    "age": "number",
+    "birthday": "Date",
+    "gender": "string (Enum => Male/Female)",
+    "location": "string",
+    "cart": [{
+      "productId": "number",
+      "quantity": "number"
+    }],
+    "ProductIdWishlist": "number[]",
+    "createdDate": "Date",
+    "lastLogin": "Date"
+  },
+  
+  "CategorieSchema": {
+    "_id": "ObjectId",
+    "CategorieName": "string",
+    "image": "string (Url S3)",
+    "isShow": "boolean"
+  },
+
+  "ProductSchema": {
+    "_id": "ObjectId",
+    "CategorieId": "ObjectId (Ref CategorieSchema)" ,
+    "ProductName": "string",
+    "price": "number",
+    "description": "string",
+    "image": "string (Url S3)",
+    "stockQuantity": "number",
+    "remark": "string (eg.color, size)",
+    "isShow": "boolean",
+    "createdDate": "Date",
+    "updatedDate": "Date"
+  },
+
+  "TransactionSchema": {
+    "_id": "ObjectId",
+    "customerId": "ObjectId (Ref CustomerSchema)",
+    "item": [{
+      "productId": "ObjectId (Ref ProductSchema)",
+      "name": "string",
+      "quantity": "number",
+      "price": "number"
+    }],
+    "PaidBy": "String (Enum => Cash / CreditCard)",
+    "totalPrice": "number",
+    "timestamp": "number"
+  }
+}
